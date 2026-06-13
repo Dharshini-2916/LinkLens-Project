@@ -267,15 +267,17 @@ YouTube Video Link:
 
 ## 📸 Screenshots
 
-Add screenshots for:
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
 
-1. Login Page
-2. Dashboard
-3. Create Link Popup
-4. Analytics Page
-5. Settings Page
-6. QR Code Generation
-7. CSV Upload Feature
+### Analytics
+![Analytics](screenshots/analytics.png)
+
+### Settings
+![Settings](screenshots/settings.png)
+
+### Create Link
+![Create Link](screenshots/create-link.png)
 
 ---
 
