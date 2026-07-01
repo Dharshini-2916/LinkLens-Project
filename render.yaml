@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: linklens-backend-service
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        value: mongodb://sarveshp29052006_db_user:linklens123@ac-syxzzqb-shard-00-00.e8hojhl.mongodb.net:27017,ac-syxzzqb-shard-00-01.e8hojhl.mongodb.net:27017,ac-syxzzqb-shard-00-02.e8hojhl.mongodb.net:27017/?ssl=true&replicaSet=atlas-9nkf2b-shard-0&authSource=admin&appName=linklens
+      - key: JWT_SECRET
+        value: linklens_super_secret_jwt_key_2026_change_in_production
+      - key: CLIENT_URL
+        placeholder: Enter Vercel frontend URL once deployed (e.g. https://linklens-project.vercel.app)
+      - key: SHORT_URL_BASE
+        placeholder: Enter this Render service URL (e.g. https://linklens-backend-service.onrender.com)
