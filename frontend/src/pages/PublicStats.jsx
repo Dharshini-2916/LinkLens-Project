@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { 
-  ArrowLeft, 
   MousePointerClick, 
   Calendar, 
   Clock, 
@@ -21,16 +20,9 @@ import {
   XAxis, 
   YAxis, 
   Tooltip, 
-  CartesianGrid,
-  BarChart,
-  Bar,
-  Cell,
-  PieChart,
-  Pie
+  CartesianGrid
 } from 'recharts';
 import dayjs from 'dayjs';
-
-const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
 
 export function PublicStats() {
   const { shortCode } = useParams();
@@ -66,8 +58,7 @@ export function PublicStats() {
     );
   }
 
-  const { link, trends, recentVisits, deviceBreakdown, browserBreakdown, countryBreakdown, referrerBreakdown } = data.data;
-  const fullShortUrl = `${import.meta.env.VITE_SHORT_URL_BASE || 'http://localhost:5000'}/${shortCode}`;
+  const { link, trends, deviceBreakdown, browserBreakdown, countryBreakdown, referrerBreakdown } = data.data;
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-8 relative overflow-hidden">

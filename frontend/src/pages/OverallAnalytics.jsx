@@ -1,20 +1,14 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetOverallAnalytics } from '@/hooks/useAnalytics';
 import { useGetLinks } from '@/hooks/useLinks';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { 
   MousePointerClick, 
-  Calendar, 
-  Clock, 
   Monitor, 
   Globe,
   Link2,
-  ExternalLink,
-  ChevronRight,
   TrendingUp,
   Share2
 } from 'lucide-react';
@@ -32,8 +26,7 @@ import dayjs from 'dayjs';
 export function OverallAnalytics() {
   const navigate = useNavigate();
   const { data: overallData, isLoading: isOverallLoading, isError: isOverallError } = useGetOverallAnalytics();
-  const { data: linksData, isLoading: isLinksLoading } = useGetLinks();
-  const [selectedLink, setSelectedLink] = useState('');
+  const { data: linksData } = useGetLinks();
 
   const handleLinkSelectChange = (e) => {
     const value = e.target.value;
@@ -63,7 +56,7 @@ export function OverallAnalytics() {
     );
   }
 
-  const { totalLinks, totalClicks, trends, deviceBreakdown, browserBreakdown, countryBreakdown, referrerBreakdown, recentVisits } = overallData.data;
+  const { totalLinks, totalClicks, trends, deviceBreakdown, countryBreakdown, referrerBreakdown, recentVisits } = overallData.data;
   const links = linksData?.links || [];
 
   return (
@@ -79,7 +72,7 @@ export function OverallAnalytics() {
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <label className="text-sm font-medium text-muted-foreground whitespace-nowrap">View Specific Link:</label>
           <select 
-            value={selectedLink}
+            value=""
             onChange={handleLinkSelectChange}
             className="h-10 px-3 pr-8 rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-all w-full sm:w-64"
           >

@@ -10,7 +10,7 @@ import {
   Menu,
   X 
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 
 const navItems = [

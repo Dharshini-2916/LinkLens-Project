@@ -64,7 +64,7 @@ export function Analytics() {
 
   const handleExportPDF = () => {
     if (!data) return;
-    const { recentVisits, link, trends } = data.data;
+    const { recentVisits, link } = data.data;
     const doc = new jsPDF();
     
     doc.setFontSize(18);

@@ -13,7 +13,6 @@ import {
   BarChart3, 
   Plus, 
   Search,
-  Filter,
   ExternalLink,
   QrCode,
   Edit,

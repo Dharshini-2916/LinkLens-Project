@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2, Link2, Calendar, Tag, CheckSquare, Square, Eye, EyeOff } from 'lucide-react';
+import { X, Loader2, Link2, Calendar, Tag, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -25,10 +25,17 @@ export function EditLinkModal({ isOpen, onClose, link }) {
   const [serverError, setServerError] = useState('');
   const [isEnabled, setIsEnabled] = useState(true);
   const [isPublicStats, setIsPublicStats] = useState(true);
+  const [prevLinkId, setPrevLinkId] = useState(null);
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     resolver: zodResolver(editLinkSchema),
   });
+
+  if (link && link._id !== prevLinkId) {
+    setPrevLinkId(link._id);
+    setIsEnabled(link.isEnabled ?? true);
+    setIsPublicStats(link.isPublicStats ?? true);
+  }
 
   useEffect(() => {
     if (link) {
@@ -37,8 +44,6 @@ export function EditLinkModal({ isOpen, onClose, link }) {
         customAlias: link.customAlias || '',
         expiryDate: link.expiryDate ? dayjs(link.expiryDate).format('YYYY-MM-DD') : '',
       });
-      setIsEnabled(link.isEnabled ?? true);
-      setIsPublicStats(link.isPublicStats ?? true);
     }
   }, [link, reset]);
 

@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Upload, FileSpreadsheet, Check, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useBulkCreateLinks } from '@/hooks/useLinks';
 
@@ -125,6 +126,7 @@ export function BulkUploadModal({ isOpen, onClose }) {
       setParsedLinks(links);
       setStatus('parsed');
     } catch (err) {
+      console.error('CSV Parsing Error:', err);
       setError('Error parsing CSV. Ensure correct formatting.');
     }
   };
