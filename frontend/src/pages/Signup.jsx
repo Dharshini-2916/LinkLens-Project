@@ -33,11 +33,18 @@ export function Signup() {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     setError('');
+
     try {
       await signup(data.name, data.email, data.password);
       navigate('/dashboard', { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create account. Email may already be in use.');
+      console.log("Signup Error:", err.response?.data);
+
+      setError(
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        "Signup failed"
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -46,7 +53,7 @@ export function Signup() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -z-10" />
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -69,7 +76,7 @@ export function Signup() {
               Enter your details to get started with LinkLens
             </CardDescription>
           </CardHeader>
-          
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <CardContent className="space-y-4">
               {error && (
@@ -77,7 +84,7 @@ export function Signup() {
                   {error}
                 </div>
               )}
-              
+
               <div className="space-y-2">
                 <label className="text-sm font-medium">Full Name</label>
                 <Input error={errors.name?.message} {...register('name')} />
@@ -87,7 +94,7 @@ export function Signup() {
                 <label className="text-sm font-medium">Email</label>
                 <Input type="email" error={errors.email?.message} {...register('email')} />
               </div>
-              
+
               <div className="space-y-2">
                 <label className="text-sm font-medium">Password</label>
                 <Input type="password" error={errors.password?.message} {...register('password')} />
@@ -98,7 +105,7 @@ export function Signup() {
                 <Input type="password" error={errors.confirmPassword?.message} {...register('confirmPassword')} />
               </div>
             </CardContent>
-            
+
             <CardFooter className="flex flex-col gap-4">
               <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
