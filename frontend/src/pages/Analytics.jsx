@@ -113,7 +113,7 @@ export function Analytics() {
 
   const { link, trends, recentVisits, deviceBreakdown = [], browserBreakdown = [], countryBreakdown = [], referrerBreakdown = [] } = data.data;
   const shortCode = link.customAlias || link.shortCode;
-  const fullShortUrl = `${import.meta.env.VITE_SHORT_URL_BASE || 'http://localhost:5000'}/${shortCode}`;
+  const fullShortUrl = `${import.meta.env.VITE_SHORT_URL_BASE || 'https://linklens-backend.onrender.com'}/${shortCode}`;
 
   return (
     <div className="space-y-6">

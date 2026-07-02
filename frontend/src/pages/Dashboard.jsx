@@ -31,7 +31,7 @@ import autoTable from 'jspdf-autotable';
 
 dayjs.extend(relativeTime);
 
-const SHORT_URL_BASE = import.meta.env.VITE_SHORT_URL_BASE || 'http://localhost:5000';
+const shortUrl = import.meta.env.VITE_SHORT_URL_BASE || "https://linklens-backend.onrender.com";
 
 export function Dashboard() {
   const navigate = useNavigate();
