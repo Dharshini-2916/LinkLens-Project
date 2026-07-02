@@ -31,7 +31,7 @@ export const createLink = async (req, res, next) => {
           message: 'This custom alias is already taken. Please choose another one.',
         });
       }
-      shortCode = customAlias.toLowerCase();
+      shortCode = generateShortCode();
     } else {
       // Generate unique short code
       shortCode = generateShortCode();
