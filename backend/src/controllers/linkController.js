@@ -44,6 +44,11 @@ export const createLink = async (req, res, next) => {
     }
 
     // 3. Create link
+    console.log("Creating link...");
+    console.log("originalUrl:", originalUrl);
+    console.log("shortCode:", shortCode);
+    console.log("customAlias:", customAlias);
+
     const link = await Link.create({
       user: req.user._id,
       originalUrl,
@@ -282,9 +287,9 @@ export const updateLink = async (req, res, next) => {
       if (customAlias) {
         const aliasLower = customAlias.trim().toLowerCase();
         // Check if taken by another link
-        const existingAlias = await Link.findOne({ 
-          customAlias: aliasLower, 
-          _id: { $ne: link._id } 
+        const existingAlias = await Link.findOne({
+          customAlias: aliasLower,
+          _id: { $ne: link._id }
         });
         if (existingAlias) {
           return res.status(400).json({
