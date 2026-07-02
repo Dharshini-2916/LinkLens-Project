@@ -356,3 +356,5 @@ This project is developed for educational and hackathon purposes.
 ### Hackathon Attribution
 
 This project is a part of a hackathon run by https://katomaran.com
+
+Test auto deploy
